@@ -5,7 +5,7 @@ import ToastNotification from "./components/ToastNotification";
 import { useState } from "react";
 
 function App() {
-  const [showToast, setShowToast] = useState(true);
+  const [showToast, setShowToast] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] p-4 flex flex-col gap-4">
