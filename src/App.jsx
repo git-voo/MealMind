@@ -1,21 +1,25 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import GroceryUpload from "./components/GroceryUpload";
-import WeeklyMealPlan from "./components/WeeklyMealPlan";
-import ToastNotification from "./components/ToastNotification";
-import { useState } from "react";
+import HomePage from "./pages/HomePage";
+import ShelfPage from "./pages/ShelfPage";
+import PlanPage from "./pages/PlanPage";
+import { ToastProvider } from "./context/ToastContext";
 
 function App() {
-  const [showToast, setShowToast] = useState(false);
-
   return (
-    <div className="min-h-screen bg-[#FAFAFA] p-4 flex flex-col gap-4">
-      <Navbar />
-      <GroceryUpload />
-      <WeeklyMealPlan />
-      {showToast && (
-        <ToastNotification message="We noticed you prefer vegetarian meals. Future plans will reflect this." />
-      )}
-    </div>
+    <ToastProvider>
+      <Router>
+        <div className="min-h-screen bg-[#FAFAFA] p-4 flex flex-col gap-4">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shelf" element={<ShelfPage />} />
+            <Route path="/plan" element={<PlanPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </div>
+      </Router>
+    </ToastProvider>
   );
 }
 
